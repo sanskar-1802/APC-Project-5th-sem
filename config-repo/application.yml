@@ -1,0 +1,4 @@
+app:
+  name: click2vote
+  description: Global default configuration
+  version: 1.0.0

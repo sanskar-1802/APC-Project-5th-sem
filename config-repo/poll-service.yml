@@ -1,0 +1,9 @@
+
+# server:
+#   port: 9002
+poll-service:
+  datasource:
+    url: jdbc:mysql://localhost:3306/poll_db
+    username: polluser
+    password: pollpass
+

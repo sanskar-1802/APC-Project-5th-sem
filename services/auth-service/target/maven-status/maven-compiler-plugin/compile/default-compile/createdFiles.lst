@@ -1,0 +1,6 @@
+com\click2vote\auth\service\AuthService.class
+com\click2vote\auth\web\AuthController.class
+com\click2vote\auth\repo\UserRepository.class
+com\click2vote\auth\AuthServiceApp.class
+com\click2vote\auth\security\SecurityConfig.class
+com\click2vote\auth\security\JwtUtils.class

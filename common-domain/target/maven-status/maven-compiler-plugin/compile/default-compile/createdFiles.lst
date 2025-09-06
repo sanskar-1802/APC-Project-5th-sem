@@ -1,0 +1,4 @@
+com\click2vote\common\domain\Poll.class
+com\click2vote\common\domain\User.class
+com\click2vote\common\domain\Vote.class
+com\click2vote\common\domain\PollOption.class
