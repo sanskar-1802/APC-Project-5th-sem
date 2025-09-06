@@ -1,0 +1,19 @@
+
+server:
+  port: 8080
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: auth
+          uri: http://localhost:9001
+          predicates:
+            - Path=/api/auth/**
+        - id: poll
+          uri: http://localhost:9002
+          predicates:
+            - Path=/api/polls/**
+        - id: vote
+          uri: http://localhost:9003
+          predicates:
+            - Path=/api/votes/**

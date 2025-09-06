@@ -1,1 +1,13 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/sanskar-1802/APC-Project-5th-sem
+          default-label: main
 
