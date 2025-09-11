@@ -1,5 +1,6 @@
 C:\Users\Dell\Downloads\click2vote-starter\services\auth-service\src\main\java\com\click2vote\auth\AuthServiceApp.java
 C:\Users\Dell\Downloads\click2vote-starter\services\auth-service\src\main\java\com\click2vote\auth\repo\UserRepository.java
+C:\Users\Dell\Downloads\click2vote-starter\services\auth-service\src\main\java\com\click2vote\auth\security\JwtAuthFilter.java
 C:\Users\Dell\Downloads\click2vote-starter\services\auth-service\src\main\java\com\click2vote\auth\security\JwtUtils.java
 C:\Users\Dell\Downloads\click2vote-starter\services\auth-service\src\main\java\com\click2vote\auth\security\SecurityConfig.java
 C:\Users\Dell\Downloads\click2vote-starter\services\auth-service\src\main\java\com\click2vote\auth\service\AuthService.java

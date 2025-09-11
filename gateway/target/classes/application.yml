@@ -1,7 +1,10 @@
-
 server:
-  port: 8080
+  port: 8085
+
 spring:
+  main:
+    web-application-type: reactive   # ✅ force reactive mode
+
   cloud:
     gateway:
       routes:
