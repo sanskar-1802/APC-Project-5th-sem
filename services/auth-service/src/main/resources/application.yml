@@ -1,34 +1,46 @@
+#  server:
+#   port: 8081
 
-# server:
-#   port: 9001
 # spring:
 #   datasource:
-#     url: jdbc:h2:mem:authdb;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
-#     driverClassName: org.h2.Driver
+#     url: jdbc:h2:mem:authdb
+#     driver-class-name: org.h2.Driver
 #     username: sa
-#     password:
+#     password: 
 #   jpa:
 #     hibernate:
 #       ddl-auto: update
 #     show-sql: true
+#     properties:
+#       hibernate:
+#         format_sql: true
+
 # jwt:
-#   secret: secret-key-change-me-which-should-be-long
+#   secret: mysecretkey
+
 server:
-  port: 8081
+  port: 8081  # You can change the port if needed
 
 spring:
   datasource:
-    url: jdbc:h2:mem:authdb
+    url: jdbc:h2:mem:click2vote_db
     driver-class-name: org.h2.Driver
     username: sa
-    password: 
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
 
+# JWT Secret Key
 jwt:
-  secret: mysecretkey
+  secret: your-very-strong-secret-key-change-this
+  expiration-ms: 86400000  # 1 day in milliseconds
+
+logging:
+  level:
+    org.springframework: INFO

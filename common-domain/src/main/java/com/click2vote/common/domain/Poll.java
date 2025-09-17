@@ -1,7 +1,9 @@
 package com.click2vote.common.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Poll {
@@ -11,13 +13,16 @@ public class Poll {
     private Long id;
 
     private String title;
+
     private String description;
+
     private boolean closed = false;
 
     @OneToMany(mappedBy = "poll", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<PollOption> options = new ArrayList<>();
 
-    // --- Getters and Setters ---
+    // Getters & Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -33,9 +38,9 @@ public class Poll {
     public List<PollOption> getOptions() { return options; }
     public void setOptions(List<PollOption> options) { this.options = options; }
 
-    // --- Needed for PollService ---
+    // Helper to add option
     public void addOption(PollOption option) {
-        option.setPoll(this); // set back-reference
-        this.options.add(option);
+        option.setPoll(this);  // important for bidirectional relationship
+        options.add(option);
     }
 }

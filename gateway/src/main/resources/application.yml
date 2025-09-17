@@ -1,22 +1,41 @@
+
 server:
   port: 8085
 
 spring:
   main:
-    web-application-type: reactive   # ✅ force reactive mode
+    web-application-type: reactive   # force reactive mode
 
   cloud:
     gateway:
       routes:
-        - id: auth
-          uri: http://localhost:9001
+        # Auth Service
+        - id: auth-service
+          uri: http://localhost:8081
           predicates:
             - Path=/api/auth/**
-        - id: poll
+        
+        # Poll Service
+        - id: poll-service
           uri: http://localhost:9002
           predicates:
             - Path=/api/polls/**
-        - id: vote
+        
+        # Vote Service
+        - id: vote-service
           uri: http://localhost:9003
           predicates:
             - Path=/api/votes/**
+        
+        # Root redirect to Auth Service (optional)
+        - id: root
+          uri: http://localhost:8081
+          predicates:
+            - Path=/
+        
+        # Fallback route for undefined paths
+        - id: fallback
+          uri: "http://localhost:8085/fallback"
+          predicates:
+            - Path=/**
+

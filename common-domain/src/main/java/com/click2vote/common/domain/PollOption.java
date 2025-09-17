@@ -1,5 +1,6 @@
 package com.click2vote.common.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +15,7 @@ public class PollOption {
 
     @ManyToOne
     @JoinColumn(name = "poll_id")
+    @JsonBackReference  // prevents infinite recursion
     private Poll poll;
 
     // Getters & Setters

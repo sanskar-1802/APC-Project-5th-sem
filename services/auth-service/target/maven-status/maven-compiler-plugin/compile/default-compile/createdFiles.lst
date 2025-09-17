@@ -1,6 +1,10 @@
 com\click2vote\auth\service\AuthService.class
-com\click2vote\auth\web\AuthController.class
+com\click2vote\auth\security\JwtAuthFilter.class
+com\click2vote\auth\security\SecurityConfig$1.class
+com\click2vote\auth\controller\AuthController$RegisterRequest.class
+com\click2vote\auth\controller\AuthController$LoginRequest.class
 com\click2vote\auth\repo\UserRepository.class
 com\click2vote\auth\AuthServiceApp.class
 com\click2vote\auth\security\SecurityConfig.class
+com\click2vote\auth\controller\AuthController.class
 com\click2vote\auth\security\JwtUtils.class
