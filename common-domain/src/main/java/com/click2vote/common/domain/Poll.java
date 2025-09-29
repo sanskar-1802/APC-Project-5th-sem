@@ -6,21 +6,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "polls")  // explicit table name for clarity
 public class Poll {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)  // title should not be null
     private String title;
 
     private String description;
 
     private boolean closed = false;
 
-    @OneToMany(mappedBy = "poll", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(
+        mappedBy = "poll",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true,
+        fetch = FetchType.LAZY   // better performance, avoid loading options every time
+    )
     @JsonManagedReference
-    private List<PollOption> options = new ArrayList<>();
+    private List<PollOption> options  = new ArrayList<>();
 
     // Getters & Setters
     public Long getId() { return id; }
@@ -42,5 +49,11 @@ public class Poll {
     public void addOption(PollOption option) {
         option.setPoll(this);  // important for bidirectional relationship
         options.add(option);
+    }
+
+    // Helper to remove option
+    public void removeOption(PollOption option) {
+        options.remove(option);
+        option.setPoll(null);
     }
 }

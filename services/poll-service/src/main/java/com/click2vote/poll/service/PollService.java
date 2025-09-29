@@ -28,7 +28,13 @@ public class PollService {
             p.addOption(o);  // ensures bidirectional link
         }
 
-        return repo.save(p);
+        // Save and flush to force IDs to be generated
+    Poll savedPoll = repo.saveAndFlush(p);
+
+    // Optional: force loading options if using LAZY fetch
+    savedPoll.getOptions().size(); // triggers loading
+
+    return savedPoll;
     }
 
     public List<Poll> listOpen() {

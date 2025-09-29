@@ -1,6 +1,7 @@
 
 server:
   port: 8085
+  max-http-header-size: 40 KB
 
 spring:
   main:

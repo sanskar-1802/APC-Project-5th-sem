@@ -11,12 +11,16 @@ public class PollOption {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)  // option text should not be null
     private String text;
 
-    @ManyToOne
-    @JoinColumn(name = "poll_id")
-    @JsonBackReference  // prevents infinite recursion
-    private Poll poll;
+// PollOption.java
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "poll_id", nullable = false)
+// @JsonIgnore   //  prevents Poll from being serialized again
+@JsonBackReference 
+private Poll poll;
+
 
     // Getters & Setters
     public Long getId() { return id; }

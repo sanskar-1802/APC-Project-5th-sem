@@ -2,3 +2,4 @@ com\click2vote\poll\service\PollService.class
 com\click2vote\poll\repo\PollRepository.class
 com\click2vote\poll\web\PollController.class
 com\click2vote\poll\PollServiceApp.class
+com\click2vote\poll\dto\PollResponse.class
