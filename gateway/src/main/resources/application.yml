@@ -27,6 +27,8 @@ spring:
           uri: http://localhost:9003
           predicates:
             - Path=/api/votes/**
+          filters:
+            - StripPrefix=1  
         
         # Root redirect to Auth Service (optional)
         - id: root

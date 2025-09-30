@@ -1,4 +1,4 @@
+com\click2vote\vote\service\VoteService.class
 com\click2vote\vote\repo\VoteRepository.class
 com\click2vote\vote\web\VoteController.class
-com\click2vote\vote\service\VoteService.class
 com\click2vote\vote\VoteServiceApp.class

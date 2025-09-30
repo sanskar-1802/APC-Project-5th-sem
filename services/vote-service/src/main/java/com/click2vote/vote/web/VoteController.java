@@ -5,6 +5,8 @@ import com.click2vote.common.domain.Vote;
 import com.click2vote.common.domain.Poll;
 import com.click2vote.common.domain.PollOption;
 import com.click2vote.vote.dto.VoteRequest;
+import com.click2vote.vote.dto.VoteResponse;
+
 import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -15,6 +17,7 @@ import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api/vote")  // singular to match your Postman
+@CrossOrigin(origins = "*")
 public class VoteController {
 
     private final VoteService svc;
@@ -23,46 +26,24 @@ public class VoteController {
         this.svc = svc;
     }
 
-    // Cast a vote
-    // @PostMapping
-    // public Vote cast(@RequestBody VoteRequest request) {
-    //     Vote v = new Vote();
-    //     v.setUserId(request.getUserId());
 
-    //     // Link vote to Poll and PollOption using IDs
-    //     Poll p = new Poll();
-    //     p.setId(request.getPollId());
-    //     v.setPoll(p);
-
-    //     PollOption o = new PollOption();
-    //     o.setId(request.getOptionId());
-    //     v.setOption(o);
-
-    //     return svc.cast(v);
-    // }
     @PostMapping
-public Map<String, Object> cast(@RequestBody VoteRequest request) {
+@CrossOrigin(origins = "http://localhost:5173") // allow frontend origin (or "*")
+public VoteResponse cast(@RequestBody VoteRequest request) {
     Vote v = new Vote();
     v.setUserId(request.getUserId());
 
-    Poll p = new Poll();
-    p.setId(request.getPollId());
+    Poll p = new Poll(); p.setId(request.getPollId());
     v.setPoll(p);
 
-    PollOption o = new PollOption();
-    o.setId(request.getOptionId());
+    PollOption o = new PollOption(); o.setId(request.getOptionId());
     v.setOption(o);
 
     Vote saved = svc.cast(v);
 
-    // return only essential fields to avoid recursion & big JSON
-    Map<String, Object> resp = new HashMap<>();
-    resp.put("id", saved.getId());
-    resp.put("pollId", request.getPollId());
-    resp.put("optionId", request.getOptionId());
-    resp.put("userId", request.getUserId());
-    return resp;
+    return new VoteResponse(saved.getId(), request.getPollId(), request.getOptionId(), request.getUserId());
 }
+
 
 
     // Get tally of votes for a poll

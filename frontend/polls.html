@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Polls - Click2Vote</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>📊 All Polls</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+      <a href="admin.html">Create Poll</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Available Polls</h2>
+      <div id="polls-list" class="list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Click2Vote © 2025</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const pollsContainer = document.getElementById("polls-list");
+      try {
+        const polls = await fetchPolls();
+        if (polls.length === 0) {
+          pollsContainer.innerHTML = "<p>No polls available right now.</p>";
+          return;
+        }
+        pollsContainer.innerHTML = polls.map(p => `
+          <div class="poll-item">
+            <h3>${p.title}</h3>
+            <p>${p.description}</p>
+            <a href="poll.html?id=${p.id}" class="btn">View & Vote</a>
+          </div>
+        `).join("");
+      } catch (err) {
+        pollsContainer.innerHTML = "<p class='error'>⚠️ Failed to load polls</p>";
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

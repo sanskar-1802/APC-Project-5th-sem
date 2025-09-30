@@ -1,6 +1,6 @@
 server:
   port: 9003
-  max-http-header-size: 40 KB   # default is 8KB; increase if needed
+  max-http-request-header-size: 40KB  # ✅ correct property
 
 spring:
   datasource:
